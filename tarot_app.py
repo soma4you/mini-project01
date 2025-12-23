@@ -17,17 +17,16 @@ from function_tools import (
 # --------------------------------------------------
 # 기본 설정
 # --------------------------------------------------
-
-
 client = OpenAI()
-MODEL = "gpt-4.1-mini"
+MODEL_GPT_4_1_MINI = "gpt-4.1-mini"
+MODEL_GPT_4_1_NANO = "gpt-4.1-nano-2025-04-14"
+MODEL_GPT_4_1 = "gpt-4.1"
 TEMPERATURE = 1
-
 
 # --------------------------------------------------
 # 유틸 함수
 # --------------------------------------------------
-def set_mystic_tarot_theme():
+def set_mystic_tarot_theme(): # 배경 테마
     st.markdown("""
         <style>
         .stApp {
@@ -52,7 +51,7 @@ def set_mystic_tarot_theme():
         </style>
     """, unsafe_allow_html=True)
     
-def focus_chat_input():
+def focus_chat_input(): # 채팅 입력창 강제 포커스
     """chat_input textarea에 포커스"""
     components.html(
         """
@@ -67,11 +66,12 @@ def focus_chat_input():
         height=0,
     )
 
+# 토큰 사용량 추출
 def extract_token_usage(response):
-    """
-    OpenAI 응답에서 토큰 사용량을 안전하게 추출
-    """
     if hasattr(response, "usage") and response.usage:
+        """
+        OpenAI 응답에서 토큰 사용량을 안전하게 추출
+        """
         return {
             "prompt_tokens": response.usage.prompt_tokens,
             "completion_tokens": response.usage.completion_tokens,
@@ -79,6 +79,7 @@ def extract_token_usage(response):
         }
     return None
 
+# 토큰 사용량 업데이트
 def add_token_usage(usage):
     if usage is None:
         return
@@ -97,7 +98,7 @@ def add_token_usage(usage):
 
 def call_openai(messages, stream=False, tools=None):
     return client.chat.completions.create(
-        model=MODEL,
+        model=MODEL_GPT_4_1_MINI,
         messages=messages,
         temperature=TEMPERATURE,
         stream=stream,
@@ -300,5 +301,3 @@ if __name__ == "__main__":
             st.write(st.session_state.token_usage)
             
     run()
-
-

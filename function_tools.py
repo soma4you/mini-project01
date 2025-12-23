@@ -1,7 +1,4 @@
-from datetime import datetime
-import pytz
 import random
-import streamlit as st
 
 tools_ = [
   {
@@ -26,19 +23,7 @@ tools_ = [
     }
   }
 ]
-
-def get_current_time(timezone: str = 'Asia/Seoul'):
-    tz = pytz.timezone(timezone)
-    now = datetime.now(tz).strftime("%Y-%m-%d %H:%M:%S")
-    return f"{now} {timezone}"
-
 def draw_tarot_cards(card_ids: str):
     print("카드 ID ----------> ", card_ids)
     card_ids = card_ids.split(',')
     return random.sample(card_ids, 3)
-  
-def reading():
-  pass
-  
-
-    
