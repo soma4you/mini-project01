@@ -1,4 +1,4 @@
-# streamlit_app.py
+# tarot_app.py
 import os
 import time
 import random  # ✅ 추가
@@ -13,19 +13,25 @@ st.set_page_config(layout="centered")
 
 client = OpenAI()
 
-MODEL = "gpt-3.5-turbo"
-TEMPERATURE = 0.4
+MODEL = "gpt-4.1-mini"
+TEMPERATURE = 1
 
 # 전체 세션 초기화
 def reset():
-    
-    # 모든 세션 상태 키 목록 가져오기
-    keys = list(st.session_state.keys())
-    for key in keys:
-        print(key)
-        del st.session_state[key]
-    
-    st.rerun()
+    # 진행 단계 표시 (start -> reading)
+    if "phase" not in st.session_state or st.session_state.phase != "start":
+        
+        st.session_state.phase = "start"
+        
+        # 모든 세션 상태 키 목록 가져오기
+        key_list = ["messages"]
+        keys = list(st.session_state.keys())
+        for key in keys:
+            for k in key_list:
+                if key == k:
+                    del st.session_state[key]
+        
+        st.rerun()
 
 # OpenAI API 호출
 def get_ai_response(messages, stream = False, tools = None):
@@ -94,6 +100,11 @@ def run():
             st.markdown(user_input)
         st.session_state.messages.append({"role": "user", "content": user_input})
         
+        # if not st.session_state.input_disabled: # 입력창 비활성화
+        #     st.session_state.input_disabled = True
+        #     st.rerun()
+        
+        
         # 어시스턴트 응답에 대한 1차 처리(도구 사용)
         ai_response = get_ai_response(st.session_state.messages, tools=tools_)
         ai_message = ai_response.choices[0].message
@@ -106,17 +117,6 @@ def run():
                 tool_name = tool_call.function.name
                 tool_call_id = tool_call.id
                 arguments = json.loads(tool_call.function.arguments)
-                
-                # 요청한 도시의 현재 시간 반환
-                if tool_name == "get_current_time":
-                    st.session_state.messages.append({
-                        "role": "function",
-                        "tool_call_id": tool_call_id,
-                        "name": tool_name,
-                        "content": get_current_time(
-                            timezone=arguments["timezone"]
-                        ),
-                    })
                 
                 # 카로카드 id 3개 반환
                 if tool_name == "draw_tarot_cards":
@@ -167,13 +167,17 @@ def run():
                             st.image(card["image_url"], use_container_width=True)            
                             st.markdown(f"**{card['id']}. {card['name']}**  \n{card['keywords']}", text_alignment="center")
                             time.sleep(1)
-  
+
         # 어시스턴트 응답에 대한 2차 처리
         with st.chat_message("assistant"):
             stream = get_ai_response(st.session_state.messages, stream=True)
             response = st.write_stream(stream)
         st.session_state.messages.append({"role": "assistant", "content": response})
-        
+            
+        # if st.session_state.input_disabled:
+        #     st.session_state.input_disabled = False
+        #     st.rerun()
+            
 
 if __name__ == "__main__":
     
