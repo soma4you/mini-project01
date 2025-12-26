@@ -8,6 +8,9 @@
 ### 2025-12-26(금)
 - 프로젝트 최종본 등록
 
+>>> pip install streamlit
+>>> streamlit run tarot_app.py
+
 ```mermaid
 flowchart TD
     %% 노드 스타일 정의
