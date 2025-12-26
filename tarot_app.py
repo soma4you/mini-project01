@@ -9,7 +9,6 @@ from openai import OpenAI
 import prompt
 import tarot_data
 from function_tools import (
-    get_current_time,
     draw_tarot_cards,
     tools_,
 )
