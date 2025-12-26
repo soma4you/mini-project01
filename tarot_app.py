@@ -68,9 +68,9 @@ def focus_chat_input(): # 채팅 입력창 강제 포커스
 # 토큰 사용량 추출
 def extract_token_usage(response):
     if hasattr(response, "usage") and response.usage:
-        """
-        OpenAI 응답에서 토큰 사용량을 안전하게 추출
-        """
+        # """
+        # OpenAI 응답에서 토큰 사용량을 안전하게 추출
+        # """
         return {
             "prompt_tokens": response.usage.prompt_tokens,
             "completion_tokens": response.usage.completion_tokens,
@@ -182,7 +182,7 @@ def handle_tools(ai_message):
 def handle_tarot_draw(tool_call, args):
     placeholder = st.empty()
     for i in range(10):
-        placeholder.markdown(f"### 에너지가 모이고 있어요{'.' * i}", text_alignment="center")
+        placeholder.markdown(f"에너지가 모이고 있어요{'.' * i}", text_alignment="center")
         time.sleep(0.5)
 
     # 타로 카드 아이디 3개 가져오기
@@ -214,7 +214,7 @@ def handle_tarot_draw(tool_call, args):
         "image_ids": ",".join(map(str, card_ids)),
     })
 
-    placeholder.markdown("### 잠시 숨을 고르고 리딩을 시작합니다.*", text_alignment="center")
+    placeholder.markdown("### 잠시 숨을 고르고 리딩을 시작합니다.", text_alignment="center")
     time.sleep(random.randint(5, 10))
 
     # 실제 카드 오픈(앞면)
@@ -294,9 +294,9 @@ if __name__ == "__main__":
 
     # 테스트용 화면
     st.title("🌙 타로 점성술 챗봇")
-    st.sidebar.title("📊 토큰 사용량")
-    with st.sidebar:
-        if "token_usage" in st.session_state:
-            st.write(st.session_state.token_usage)
+    # st.sidebar.title("📊 토큰 사용량")
+    # with st.sidebar:
+    #     if "token_usage" in st.session_state:
+    #         st.write(st.session_state.token_usage)
             
     run()
