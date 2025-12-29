@@ -6,7 +6,7 @@ import streamlit as st
 from openai import OpenAI
 import prompt  # 프롬프트 모듈
 import tarot_data  # ✅ 추가 (tarot_data.py의 TAROT_CARDS 사용)
-from function_tools import get_current_time, draw_tarot_cards, tools_
+from function_tools import draw_tarot_cards, tools_
 import json
 
 

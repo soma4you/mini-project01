@@ -2,7 +2,7 @@ import os
 import streamlit as st
 from kakao import *
 from holiday import *
-from streamlit_app import *
+from tarot_app import *
 
 #  홈 버튼
 def home_button() :

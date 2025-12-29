@@ -223,7 +223,19 @@ def handle_tarot_draw(tool_call, args):
 # --------------------------------------------------
 # 메인 루프
 # --------------------------------------------------
-def run():
+def tarot_app():
+    st.set_page_config(layout="centered")
+    
+    # 테마 적용 함수 실행
+    set_mystic_tarot_theme()
+
+    # 테스트용 화면
+    st.title("🌙 타로 점성술 챗봇")
+    # st.sidebar.title("📊 토큰 사용량")
+    # with st.sidebar:
+    #     if "token_usage" in st.session_state:
+    #         st.write(st.session_state.token_usage)
+    
     init_session()
     render_messages()
     opening_message()
@@ -277,18 +289,5 @@ def run():
         st.rerun()
 
 # --------------------------------------------------
-if __name__ == "__main__":
-    
-    st.set_page_config(layout="centered")
-    
-    # 테마 적용 함수 실행
-    set_mystic_tarot_theme()
-
-    # 테스트용 화면
-    st.title("🌙 타로 점성술 챗봇")
-    # st.sidebar.title("📊 토큰 사용량")
-    # with st.sidebar:
-    #     if "token_usage" in st.session_state:
-    #         st.write(st.session_state.token_usage)
-            
-    run()
+if __name__ == "__main__":            
+    tarot_app()
