@@ -8,6 +8,9 @@
 ### 2025-12-26(금)
 - 프로젝트 최종본 등록
 
+### 2025-12-29(월)
+[Streamlit 실행](https://mini-project01-kix5s8kdkqr8fkuyvaqtuu.streamlit.app/)
+
 ```
 pip install streamlit
 streamlit run tarot_app.py

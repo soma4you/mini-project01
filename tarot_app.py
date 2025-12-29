@@ -110,7 +110,7 @@ def call_openai(messages, stream=False, tools=None):
 def init_session():
     if "messages" not in st.session_state:
         st.session_state.messages = [
-            {"role": "system", "content": prompt.streamlit_prompt_02}
+            {"role": "system", "content": prompt.streamlit_prompt_01}
         ]
 
     st.session_state.setdefault("phase", "start")
@@ -224,13 +224,13 @@ def handle_tarot_draw(tool_call, args):
 # 메인 루프
 # --------------------------------------------------
 def tarot_app():
-    st.set_page_config(layout="centered")
+    # st.set_page_config(layout="centered")
     
     # 테마 적용 함수 실행
-    set_mystic_tarot_theme()
+    # set_mystic_tarot_theme()
 
     # 테스트용 화면
-    st.title("🌙 타로 점성술 챗봇")
+    st.title("🌙 고민될 땐, 타로챗봇")
     # st.sidebar.title("📊 토큰 사용량")
     # with st.sidebar:
     #     if "token_usage" in st.session_state:
