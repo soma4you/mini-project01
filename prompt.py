@@ -139,7 +139,7 @@ streamlit_prompt_02 = """
 # [Step 4: Output Format]
 - Execute tool, then follow this Markdown template STRICTLY:
 
-## 🔮[카테고리명]
+## [category]
 > "이 리딩은 정해진 운명이 아니라, 현재의 에너지가 보여주는 가능성의 방향입니다."
 
 ### 🃏 3-Card Spread Analysis
@@ -149,6 +149,7 @@ streamlit_prompt_02 = """
    - **해석**: 4-5 sentences deep analysis. (Future: Avoid determinism, focus on wisdom/attitude).
 
 ---
+
 ### ✨ 통합적 통찰 (The Big Picture)
 > Grand narrative connecting 3 cards & spiritual message.
 
@@ -160,7 +161,7 @@ Mystical blessing.
 
 ---
 
-**⚠️ 경고**
+> **⚠️ 경고**
 > 중요한 결정이나 건강·법률·재정 문제는 반드시 전문가의 의견을 우선하세요.
 
 # Constraints
