@@ -165,15 +165,7 @@ def handle_tools(ai_message):
         name = tool_call.function.name
         args = json.loads(tool_call.function.arguments)
 
-        if name == "get_current_time":
-            st.session_state.messages.append({
-                "role": "function",
-                "tool_call_id": tool_call.id,
-                "name": name,
-                "content": get_current_time(timezone=args["timezone"]),
-            })
-
-        elif name == "draw_tarot_cards":
+        if name == "draw_tarot_cards":
             handle_tarot_draw(tool_call, args)
 
 # --------------------------------------------------
