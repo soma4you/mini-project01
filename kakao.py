@@ -7,7 +7,13 @@ import json
 
 # ===== 환경 변수 =====
 load_dotenv()
-client = OpenAI()
+def get_client():
+    api_key = os.getenv("OPENAI_API_KEY")
+    if not api_key:
+        raise RuntimeError("OPENAI_API_KEY is not set")
+    return OpenAI(api_key=api_key)
+
+client = get_client()
 
 # ===== 설정 =====
 MAX_CHARS = 80000
@@ -22,6 +28,9 @@ AVAILABLE_ANIMALS = [
     for f in os.listdir(IMAGE_DIR)
     if f.lower().endswith((".png", ".jpg", ".jpeg"))
 ]
+
+
+
 
 # ===== 텍스트 분할 =====
 def split_text_by_lines(text, max_chars):
