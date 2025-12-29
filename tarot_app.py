@@ -110,7 +110,7 @@ def call_openai(messages, stream=False, tools=None):
 def init_session():
     if "messages" not in st.session_state:
         st.session_state.messages = [
-            {"role": "system", "content": prompt.streamlit_prompt_01}
+            {"role": "system", "content": prompt.streamlit_prompt_02}
         ]
 
     st.session_state.setdefault("phase", "start")
